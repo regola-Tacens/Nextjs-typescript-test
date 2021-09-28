@@ -1,17 +1,18 @@
-import FormulaireFooter from "../components/FormulaireFooter";
 import styles from "../styles/Home.module.css";
-
+import FormulaireFooter from "../components/FormulaireFooter";
 import { IformEntry } from "../interfaces/IformEntry";
 import { useState } from "react";
 
-
-
 export default function Home() {
-
-  // const [formEntry, setformEntry] = useState({type:'',toFrom:'',details:'', amount:0});
-  const [formEntry, setformEntry] = useState<IformEntry | undefined>(undefined);
+  const defaultState: IformEntry = {
+    type: '',
+    toFrom: '',
+    details: '',
+    amount: 0
+  }
+  const [formEntry, setformEntry] = useState<IformEntry>(defaultState);
   const [formList, setFormList] = useState([]);
-
+  
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -26,8 +27,6 @@ export default function Home() {
                 </li>
               ))
             }
-            
-
           </ul>
 
           <div className="inputContainer">
@@ -43,3 +42,5 @@ export default function Home() {
     </div>
   );
 }
+
+

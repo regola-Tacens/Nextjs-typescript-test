@@ -6,24 +6,28 @@ const FormulaireFooter = ({
   formEntry,
   setFormList,
   formList,
-}:{
-  setFormEntry: any;
+}
+:{
+  setformEntry: any;
   formEntry: IformEntry;
   setFormList: any;
   formList: any;
-}) => {
+}
+) => {
   const handleFormSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
     setFormList([...formList, formEntry]);
   };
 
-  const handleTypeChange = (event) => {
+  const handleTypeChange = (event: { target: { value: any; }; }) => {
+    
     const type = event.target.value;
     setformEntry({ ...formEntry, type });
   };
 
   const handletofromChange = (event) => {
-    const toFrom = event.target.value;
+    console.log(event)
+    const toFrom = (event.target.value);
     setformEntry({ ...formEntry, toFrom });
   };
   const handleDetailsChange = (event) => {
@@ -31,7 +35,7 @@ const FormulaireFooter = ({
     setformEntry({ ...formEntry, details });
   };
   const handleAmountChange = (event) => {
-    const amount = event.target.value;
+    const amount = (event.target.value);
     setformEntry({ ...formEntry, amount });
   };
 
