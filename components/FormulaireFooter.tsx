@@ -1,5 +1,5 @@
-import { FunctionComponent } from "react";
 import { IformEntry } from "../interfaces/IformEntry";
+import { IformEntryArray } from "../interfaces/IformEntryArray";
 
 const FormulaireFooter = ({
   setformEntry,
@@ -8,8 +8,8 @@ const FormulaireFooter = ({
   formList,
 }
 :{
-  setformEntry: any;
-  formEntry: IformEntry;
+  setformEntry: IformEntryArray | undefined;
+  formEntry: IformEntry | undefined;
   setFormList: any;
   formList: any;
 }
@@ -19,32 +19,19 @@ const FormulaireFooter = ({
     setFormList([...formList, formEntry]);
   };
 
-  const handleTypeChange = (event: { target: { value: any; }; }) => {
-    
-    const type = event.target.value;
-    setformEntry({ ...formEntry, type });
-  };
-
-  const handletofromChange = (event) => {
-    console.log(event)
-    const toFrom = (event.target.value);
-    setformEntry({ ...formEntry, toFrom });
-  };
-  const handleDetailsChange = (event) => {
-    const details = event.target.value;
-    setformEntry({ ...formEntry, details });
-  };
-  const handleAmountChange = (event) => {
-    const amount = (event.target.value);
-    setformEntry({ ...formEntry, amount });
-  };
+  const handleInputChange = (e: { target: { id: string; value: string | number ; }; }) => {
+    console.log({...formEntry, [e.target.id]: e.target.value})
+    console.log([e.target.id])
+    setformEntry({...formEntry, [e.target.id]: e.target.value})
+  }
+  
 
   return (
     <>
       <form onSubmit={handleFormSubmit}>
         <div className="field">
           <label>Type:</label>
-          <select id="type" value={formEntry?.type} onChange={handleTypeChange}>
+          <select id="type" value={formEntry?.type} onChange={handleInputChange}>
             <option value="invoice">Invoice</option>
             <option value="payment">Payment</option>
           </select>
@@ -54,8 +41,8 @@ const FormulaireFooter = ({
           <input
             type="text"
             id="tofrom"
-            value={formEntry?.toFrom}
-            onChange={handletofromChange}
+            value={formEntry?.tofrom}
+            onChange={handleInputChange}
           />
         </div>
         <div className="field">
@@ -64,7 +51,7 @@ const FormulaireFooter = ({
             type="text"
             id="details"
             value={formEntry?.details}
-            onChange={handleDetailsChange}
+            onChange={handleInputChange}
           />
         </div>
         <div className="field">
@@ -73,7 +60,7 @@ const FormulaireFooter = ({
             type="number"
             id="amount"
             value={formEntry?.amount}
-            onChange={handleAmountChange}
+            onChange={handleInputChange}
           />
         </div>
         <button>Add</button>

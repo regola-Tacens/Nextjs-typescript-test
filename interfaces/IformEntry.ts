@@ -1,6 +1,6 @@
 export interface IformEntry {
   type:string;
-  toFrom:string;
+  tofrom:string;
   details:string;
   amount:number
 }
